@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Materials\ColorMaterial.cpp" />
+    <ClCompile Include="Materials\SpikeyMaterial.cpp" />
+    <ClCompile Include="Materials\DiffuseMaterial.cpp" />
+    <ClCompile Include="Materials\UberMaterial.cpp" />
+    <ClCompile Include="Materials\SkinnedDiffuseMaterial.cpp" />
+    <ClCompile Include="Materials\Shadow\DiffuseMaterial_Shadow.cpp" />
+    <ClCompile Include="Materials\Shadow\SkinnedDiffuseMaterial_Shadow.cpp" />
+    <ClCompile Include="Game\Prefabs\Environment\Grid.cpp" />
+    <ClCompile Include="Game\Prefabs\Snake\Snake.cpp" />
+    <ClCompile Include="Game\Prefabs\Snake\SnakeBody.cpp" />
+    <ClCompile Include="Game\Prefabs\Snake\SnakeHead.cpp" />
+    <ClCompile Include="Materials\GrassMaterial.cpp" />
+    <ClCompile Include="Game\Prefabs\Environment\Grass.cpp" />
+    <ClCompile Include="Game\Prefabs\Pickups\Pickup.cpp" />
+    <ClCompile Include="Materials\OutlineMaterial.cpp" />
+    <ClCompile Include="Game\Prefabs\Environment\PostOutline.cpp" />
+    <ClCompile Include="Game\Prefabs\Particles\StarsParticle.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\UI.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\PauseMenu.cpp" />
+    <ClCompile Include="Game\Scenes\SnakeGameScene.cpp" />
+    <ClCompile Include="Game\Scenes\MainMenuScene.cpp" />
+    <ClCompile Include="Game\Scenes\InfoScene.cpp" />
+    <ClCompile Include="Game\Prefabs\UI\GameOverMenu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Materials\SpikeyMaterial.h" />
+    <ClInclude Include="Materials\ColorMaterial.h" />
+    <ClInclude Include="Materials\DiffuseMaterial.h" />
+    <ClInclude Include="Materials\UberMaterial.h" />
+    <ClInclude Include="Materials\SkinnedDiffuseMaterial.h" />
+    <ClInclude Include="Materials\Shadow\DiffuseMaterial_Shadow.h" />
+    <ClInclude Include="Materials\Shadow\SkinnedDiffuseMaterial_Shadow.h" />
+    <ClInclude Include="Game\Prefabs\Environment\Grid.h" />
+    <ClInclude Include="Game\Prefabs\Snake\Snake.h" />
+    <ClInclude Include="Game\Prefabs\Snake\SnakeBody.h" />
+    <ClInclude Include="Game\Prefabs\Snake\SnakeHead.h" />
+    <ClInclude Include="Game\structs.h" />
+    <ClInclude Include="Materials\GrassMaterial.h" />
+    <ClInclude Include="Game\Prefabs\Environment\Grass.h" />
+    <ClInclude Include="Game\Prefabs\Pickups\Pickup.h" />
+    <ClInclude Include="Materials\OutlineMaterial.h" />
+    <ClInclude Include="Game\Prefabs\Environment\PostOutline.h" />
+    <ClInclude Include="Game\Prefabs\Particles\StarsParticle.h" />
+    <ClInclude Include="Game\Prefabs\UI\UI.h" />
+    <ClInclude Include="Game\Prefabs\UI\PauseMenu.h" />
+    <ClInclude Include="Game\Scenes\SnakeGameScene.h" />
+    <ClInclude Include="Game\Scenes\MainMenuScene.h" />
+    <ClInclude Include="Game\Scenes\InfoScene.h" />
+    <ClInclude Include="Game\Prefabs\UI\Score.h" />
+    <ClInclude Include="Game\Prefabs\UI\GameOverMenu.h" />
+  </ItemGroup>
+</Project>
