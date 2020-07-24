@@ -4,7 +4,7 @@
 
 class CameraComponent: public BaseComponent
 {
-	friend class GameScene; // TODO: remove this ugly dependency!
+	friend class GameScene;
 
 	DirectX::XMFLOAT4X4 m_View, m_Projection, m_ViewInverse, m_ViewProjection, m_ViewProjectionInverse;
 	float m_FarPlane, m_NearPlane, m_FOV, m_Size;

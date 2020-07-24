@@ -38,8 +38,6 @@ void PauseMenu::Initialize(const GameContext& gameContext)
 	m_pQuitButton->GetTransform()->Translate((windowSize.x - 405)*0.5f, 450, 0.98f);
 	AddChild(m_pQuitButton);
 
-	//m_pFontButton = ContentManager::Load<SpriteFont>(L"./Resources/SpriteFonts/ChickenPie_72.fnt");
-
 	// SOUND
 	SoundManager::GetInstance()->GetSystem()->createSound("./Resources/Sounds/Click.wav", FMOD_2D, 0, &m_pClickSound);
 	m_pClickSound->setMode(FMOD_LOOP_OFF);
@@ -47,9 +45,6 @@ void PauseMenu::Initialize(const GameContext& gameContext)
 
 void PauseMenu::Update(const GameContext& gameContext, Snake* snake)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	UNREFERENCED_PARAMETER(snake);
-
 	float xMousePos = float(gameContext.pInput->GetMousePosition().x);
 	float yMousePos = float(gameContext.pInput->GetMousePosition().y);
 	DirectX::XMFLOAT2 windowSize{ float(OverlordGame::GetGameSettings().Window.Width), float(OverlordGame::GetGameSettings().Window.Height) };

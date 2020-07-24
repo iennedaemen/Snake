@@ -3,7 +3,7 @@
 
 class ColliderComponent : public BaseComponent
 {
-	friend class RigidBodyComponent; // TODO: get rid of this ugly dependency
+	friend class RigidBodyComponent;
 
 	std::shared_ptr<physx::PxGeometry> m_Geometry;
 	const physx::PxMaterial& m_Material;

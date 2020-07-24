@@ -29,7 +29,6 @@ protected:
 	ID3DX11Effect* GetEffect() const { return m_pEffect; }
 	
 private:
-	// TODO: get rid of this nasty dependency
 	friend class MeshFilter;
 
 	bool LoadEffect(const GameContext& gameContext);

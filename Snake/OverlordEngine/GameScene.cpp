@@ -167,7 +167,7 @@ void GameScene::RootUpdate()
 
 void GameScene::RootDraw()
 {
-	//TODO: object-Scene SHADOW_PASS - start by setting the correct render target, render all to shadow map and end by reset default render target
+	// Object-Scene SHADOW_PASS - Set the correct render target, render all to shadow map and end by reset default render target
 	m_GameContext.pShadowMapper->Begin(m_GameContext);
 	for (GameObject* pChild : m_pChildren)
 	{

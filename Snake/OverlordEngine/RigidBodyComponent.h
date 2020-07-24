@@ -15,7 +15,6 @@ enum class RigidBodyConstraintFlag
 
 class RigidBodyComponent : public BaseComponent
 {
-	// TODO: get rid of this ugly dependency
 	friend class TransformComponent;
 	friend class ColliderComponent;
 

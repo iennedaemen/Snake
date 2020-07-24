@@ -80,11 +80,6 @@ void CameraComponent::SetActive()
 
 GameObject* CameraComponent::Pick(const GameContext& gameContext, CollisionGroupFlag ignoreGroups) const
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	UNREFERENCED_PARAMETER(ignoreGroups);
-		
-	//TODO implement
-
 	// To NDC
 	POINT mousePos = gameContext.pInput->GetMousePosition();
 
@@ -112,7 +107,6 @@ GameObject* CameraComponent::Pick(const GameContext& gameContext, CollisionGroup
 	
 	physx::PxQueryFilterData filterData;
 	filterData.data.word0 = static_cast<physx::PxU32>(ignoreGroups);
-	//filterData.data.word0 = ~ignoreGroups;
 	physx::PxRaycastBuffer hit;
 	PhysxProxy* physXProxy = GetGameObject()->GetScene()->GetPhysxProxy();
 

@@ -22,7 +22,6 @@ public:
 	OverlordGame* GetGame() const { return m_pGame; }
 
 private:
-	// TODO: get rid of this nasty dependency
 	friend class OverlordGame;
 	friend class Singleton<SceneManager>;
 

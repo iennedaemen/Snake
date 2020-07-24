@@ -46,7 +46,7 @@ void MeshIndexedDrawComponent::LoadEffect(const GameContext& gameContext)
 	m_pTechnique = m_pEffect->GetTechniqueByIndex(0);
 
 	//*****************
-	//Load Input Layout (TODO: EffectUtils::CreateInputLayout(...) +> use @ Material)
+	//Load Input Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},

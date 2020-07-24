@@ -147,7 +147,6 @@ protected:
 	virtual void Update(const GameContext&) {}
 
 private:
-	// TODO: try to get rid of this dependency
 	friend class GameScene;
 
 	void RootInitialize(const GameContext& gameContext);

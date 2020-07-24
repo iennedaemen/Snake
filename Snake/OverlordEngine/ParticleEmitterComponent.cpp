@@ -19,7 +19,6 @@ ParticleEmitterComponent::ParticleEmitterComponent(std::wstring  assetFile, int 
 	m_LastParticleInit(0.0f),
 	m_AssetFile(std::move(assetFile))
 {
-	//TODO: See Lab9_2
 	for(int i{}; i < m_ParticleCount; ++i)
 	{
 		m_Particles.push_back(new Particle(m_Settings));
@@ -28,7 +27,6 @@ ParticleEmitterComponent::ParticleEmitterComponent(std::wstring  assetFile, int 
 
 ParticleEmitterComponent::~ParticleEmitterComponent()
 {
-	//TODO: See Lab9_2
 	for (int i{}; i < m_ParticleCount; ++i)
 	{
 		SafeDelete(m_Particles[i]);
@@ -40,7 +38,6 @@ ParticleEmitterComponent::~ParticleEmitterComponent()
 
 void ParticleEmitterComponent::Initialize(const GameContext& gameContext)
 {
-	//TODO: See Lab9_2
 	LoadEffect(gameContext);
 	CreateVertexBuffer(gameContext);
 	m_pParticleTexture = ContentManager::Load<TextureData>(m_AssetFile);
@@ -48,8 +45,6 @@ void ParticleEmitterComponent::Initialize(const GameContext& gameContext)
 
 void ParticleEmitterComponent::LoadEffect(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: See Lab9_2
 	m_pEffect = ContentManager::Load<ID3DX11Effect>(L"./Resources/Effects/ParticleRenderer.fx");
 	m_pDefaultTechnique = m_pEffect->GetTechniqueByIndex(0);
 	m_pWvpVariable = m_pEffect->GetVariableByName("gWorldViewProj")->AsMatrix();
@@ -61,8 +56,6 @@ void ParticleEmitterComponent::LoadEffect(const GameContext& gameContext)
 
 void ParticleEmitterComponent::CreateVertexBuffer(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: See Lab9_2
 	if (m_pVertexBuffer)
 		m_pVertexBuffer->Release();
 
@@ -82,8 +75,6 @@ void ParticleEmitterComponent::CreateVertexBuffer(const GameContext& gameContext
 
 void ParticleEmitterComponent::Update(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: See Lab9_2
 	float particleInterval = ((m_Settings.MaxEnergy + m_Settings.MinEnergy) * 0.5f) / m_ParticleCount;
 
 	m_LastParticleInit += gameContext.pGameTime->GetElapsed();
@@ -119,8 +110,6 @@ void ParticleEmitterComponent::Draw(const GameContext& )
 
 void ParticleEmitterComponent::PostDraw(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: See Lab9_2
 	m_pWvpVariable->SetMatrix((float*)&gameContext.pCamera->GetViewProjection());
 	m_pViewInverseVariable->SetMatrix((float*)&gameContext.pCamera->GetViewInverse());
 	m_pTextureVariable->SetResource(m_pParticleTexture->GetShaderResourceView());

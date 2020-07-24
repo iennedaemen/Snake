@@ -58,7 +58,6 @@ void GameOverMenu::Initialize(const GameContext& gameContext)
 
 void GameOverMenu::Update(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
 	float xMousePos = float(gameContext.pInput->GetMousePosition().x);
 	float yMousePos = float(gameContext.pInput->GetMousePosition().y);
 	

@@ -6,7 +6,8 @@
 
 void Grass::Initialize(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);	
+	UNREFERENCED_PARAMETER(gameContext);
+	
 	ModelComponent* pModelComp = new ModelComponent(L"Resources/Meshes/GrassPlane.ovm");
 	AddComponent(pModelComp);
 	//pModelComp->GetTransform()->Scale(0.1f, 0.1f, 0.1f);

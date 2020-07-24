@@ -16,8 +16,6 @@ Particle::Particle(const ParticleEmitterSettings& emitterSettings):
 
 void Particle::Update(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: See Lab9_2
 	if (!m_IsActive) 
 		return;
 
@@ -54,8 +52,6 @@ void Particle::Update(const GameContext& gameContext)
 
 void Particle::Init(XMFLOAT3 initPosition)
 {
-	UNREFERENCED_PARAMETER(initPosition);
-	//TODO: See Lab9_2
 	m_IsActive = true;
 
 	// Energy

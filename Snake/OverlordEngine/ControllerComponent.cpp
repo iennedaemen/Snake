@@ -35,15 +35,10 @@ void ControllerComponent::Initialize(const GameContext&)
 		return;
 	}
 
-	//TODO: 1. Retrieve the ControllerManager from the PhysX Proxy (PhysxProxy::GetControllerManager();)
+	// Retrieve the ControllerManager
 	controllerManager = GetGameObject()->GetScene()->GetPhysxProxy()->GetControllerManager();
 	
-	//TODO: 2. Create a PxCapsuleControllerDesc (Struct)
-	//  > Call the "setToDefault()" method of the PxCapsuleControllerDesc
-	//	> Fill in all the required fields
-	//  > Radius, Height, ClimbingMode, UpDirection (PxVec3(0,1,0)), ContactOffset (0.1f), Material [See Initializer List]
-	//  > Position -> Use the position of the parent GameObject
-	//  > UserData -> This component
+	// Create a PxCapsuleControllerDesc (Struct)
 	physx::PxCapsuleControllerDesc capsuleControllerDesc;
 	capsuleControllerDesc.setToDefault();
 	capsuleControllerDesc.radius = m_Radius;
@@ -56,7 +51,7 @@ void ControllerComponent::Initialize(const GameContext&)
 	capsuleControllerDesc.position = physx::PxExtendedVec3(pos.x, pos.y, pos.z);
 	capsuleControllerDesc.userData = this;
 	
-	//3. Create the controller object (m_pController), use the ControllerManager to do that (CHECK IF VALID!!)
+	// Create the controller object (m_pController), use the ControllerManager to do that (CHECK IF VALID!!)
 	m_Controller = controllerManager->createController(capsuleControllerDesc);
 	
 	if (m_Controller == nullptr)
@@ -65,13 +60,11 @@ void ControllerComponent::Initialize(const GameContext&)
 		return;
 	}
 
-	//TODO: 4. Set the controller's name (use the value of m_Name) [PxController::setName]
-	//   > Converting 'wstring' to 'string' > Use one of the constructor's of the string class
-	//	 > Converting 'string' to 'char *' > Use one of the string's methods ;)
+	// Set the controller's name
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
 	std::string name = converter.to_bytes(m_Name);
 
-	//TODO: 5. Set the controller's actor's userdata > This Component
+	// Set the controller's actor's userdata
 	m_Controller->setUserData(this);
 	SetCollisionGroup(static_cast<CollisionGroupFlag>(m_CollisionGroups.word0));
 	SetCollisionIgnoreGroups(static_cast<CollisionGroupFlag>(m_CollisionGroups.word1));
@@ -147,7 +140,6 @@ void ControllerComponent::SetCollisionIgnoreGroups(const CollisionGroupFlag igno
 			auto shape = shapes[i];
 #pragma warning (pop)
 			shape->setSimulationFilterData(m_CollisionGroups);
-			//TODO: shouldn't the query filter data be set as well?
 		}
 		delete[] shapes;
 	}

@@ -49,7 +49,6 @@ public:
 	                   DirectX::XMFLOAT2 scale = DirectX::XMFLOAT2(1, 1), float rotation = 0.f);
 
 private:
-	// TODO get rid of these nasty dependencies
 	friend class Singleton<SpriteRenderer>;
 	friend class OverlordGame;
 	friend class GameScene;

@@ -158,8 +158,8 @@ MeshFilter* MeshFilterLoader::LoadContent(const std::wstring& assetFile)
 		{
 			pMesh->m_HasElement |= static_cast<UINT>(ILSemantic::BLENDINDICES);
 
-			//TODO: Start parsing the BlendIndices for every vertex
-			//and add them to the corresponding vector
+			// Start parsing the BlendIndices for every vertex
+			// and add them to the corresponding vector
 			for (unsigned int i = 0; i < vertexCount; ++i)
 			{
 				pMesh->m_BlendIndices.push_back(binReader->Read<DirectX::XMFLOAT4>());
@@ -170,8 +170,8 @@ MeshFilter* MeshFilterLoader::LoadContent(const std::wstring& assetFile)
 		{
 			pMesh->m_HasElement |= static_cast<UINT>(ILSemantic::BLENDWEIGHTS);
 
-			//TODO: Start parsing the BlendWeights for every vertex
-			//and add them to the corresponding vector
+			// Start parsing the BlendWeights for every vertex
+			// and add them to the corresponding vector
 			for (unsigned int i = 0; i < vertexCount; ++i)
 			{
 				pMesh->m_BlendWeights.push_back(binReader->Read<DirectX::XMFLOAT4>());
@@ -182,37 +182,31 @@ MeshFilter* MeshFilterLoader::LoadContent(const std::wstring& assetFile)
 		{
 			pMesh->m_HasAnimations = true;
 
-			//TODO: Start parsing the AnimationClips
-			//1. Read the clipCount
+			// Start parsing the AnimationClips
+			// Read the clipCount
 			int clipCount = binReader->Read<unsigned short>();
-			//2. For every clip
+	
 			for (int i{}; i < clipCount; ++i)
 			{
-				//3. Create a AnimationClip object (clip)
+				// Create a AnimationClip object
 				AnimationClip clip{};
-				//4. Read/Assign the ClipName
 				clip.Name = binReader->ReadString();
-				//5. Read/Assign the ClipDuration
 				clip.Duration = binReader->Read<float>();
-				//6. Read/Assign the TicksPerSecond
 				clip.TicksPerSecond = binReader->Read<float>();
-				//7. Read the KeyCount for this clip
 				int keyCount = binReader->Read<unsigned short>();
-				//8. For every key
+
 				for(int j{}; j < keyCount; ++j)
 				{
-					//9. Create a AnimationKey object (key)
+					// Create a AnimationKey object
 					AnimationKey key{};
-					//10. Read/Assign the Tick
 					key.Tick = binReader->Read<float>();
-					//11. Read the TransformCount
 					int transformCount = binReader->Read<unsigned short>();
-					//12. For every transform
+
+					// Transforms
 					for(int k{}; k < transformCount; ++k)
 					{
-						//13. Create a XMFLOAT4X4
 						DirectX::XMFLOAT4X4 boneTransforms{};
-						//14. The following 16 floats are the matrix values, they are stored by row
+						// The following 16 floats are the matrix values, they are stored by row
 						boneTransforms._11 = binReader->Read<float>();
 						boneTransforms._12 = binReader->Read<float>();
 						boneTransforms._13 = binReader->Read<float>();
@@ -233,23 +227,22 @@ MeshFilter* MeshFilterLoader::LoadContent(const std::wstring& assetFile)
 						boneTransforms._43 = binReader->Read<float>();
 						boneTransforms._44 = binReader->Read<float>();
 
-						//15. Add The matrix to the BoneTransform vector of the key
+						// Add The matrix to the BoneTransform vector of the key
 						key.BoneTransforms.push_back(boneTransforms);
 					}
-					//16. Add the key to the key vector of the clip
+					// Add the key to the key vector of the clip
 					clip.Keys.push_back(key);
 				}
-				//17. Add the clip to the AnimationClip vector of the MeshFilter (pMesh->m_AnimationClips)
+				// Add the clip to the AnimationClip vector of the MeshFilter (pMesh->m_AnimationClips)
 				pMesh->m_AnimationClips.push_back(clip);
 			}
 		}
 		break;
 		case MeshDataType::SKELETON:
 		{
-			//TODO: Complete
-			//1. Read/Assign the boneCount (pMesh->m_BoneCount)
+			// Read/Assign the boneCount
 			pMesh->m_BoneCount = binReader->Read<unsigned short>();
-			//2. Move the buffer to the next block position (don't forget that we already moved the reader ;) )
+			// Move the buffer to the next block position
 			binReader->MoveBufferPosition(dataOffset - sizeof(unsigned short));
 		}
 		break;

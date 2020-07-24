@@ -27,7 +27,6 @@ PostProcessingMaterial::PostProcessingMaterial(std::wstring effectFile, unsigned
 
 PostProcessingMaterial::~PostProcessingMaterial()
 {
-	//TODO: delete and/or release necessary objects and/or resources
 	SafeRelease(m_pInputLayout);
 	SafeRelease(m_pVertexBuffer);
 	SafeRelease(m_pIndexBuffer);;
@@ -36,21 +35,19 @@ PostProcessingMaterial::~PostProcessingMaterial()
 
 void PostProcessingMaterial::Initialize(const GameContext& gameContext)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-
 	if (!m_IsInitialized)
 	{
-		//TODO: complete
-		//1. LoadEffect (LoadEffect(...))
+		// LoadEffect
 		LoadEffect(gameContext, m_effectFile);
-		//2. CreateInputLaytout (CreateInputLayout(...))
+		
+		// CreateInputLaytout
 		EffectHelper::BuildInputLayout(gameContext.pDevice, m_pTechnique, &m_pInputLayout, m_pInputLayoutDescriptions, m_pInputLayoutSize, m_InputLayoutID);
-		//   CreateVertexBuffer (CreateVertexBuffer(...)) > As a TriangleStrip (FullScreen Quad)
+
+		// CreateVertexBuffer
 		CreateVertexBuffer(gameContext);
 		CreateIndexBuffer(gameContext);
-		//3. Create RenderTarget (m_pRenderTarget)
-		//		Take a look at the class, figure out how to initialize/create a RenderTarget Object
-		//		GameSettings > OverlordGame::GetGameSettings()
+		
+		// Create RenderTarget
 		m_pRenderTarget = new RenderTarget(gameContext.pDevice);
 		RENDERTARGET_DESC desc;
 		desc.Width = OverlordGame::GetGameSettings().Window.Width;
@@ -69,15 +66,13 @@ void PostProcessingMaterial::Initialize(const GameContext& gameContext)
 bool PostProcessingMaterial::LoadEffect(const GameContext& gameContext, const std::wstring& effectFile)
 {
 	UNREFERENCED_PARAMETER(gameContext);
-	UNREFERENCED_PARAMETER(effectFile);
 
-	//TODO: complete
-	//Load Effect through ContentManager
+	//Load Effect
 	m_pEffect = ContentManager::Load<ID3DX11Effect>(effectFile);;
-	//Check if m_TechniqueName (default constructor parameter) is set
+
+	// Set technique name
 	if(!m_TechniqueName.empty())
 	{
-		// If SET > Use this Technique (+ check if valid)
 		m_pTechnique = m_pEffect->GetTechniqueByName(m_TechniqueName.c_str());
 		
 		if(!m_pTechnique)
@@ -86,10 +81,9 @@ bool PostProcessingMaterial::LoadEffect(const GameContext& gameContext, const st
 			m_pTechnique = m_pEffect->GetTechniqueByIndex(0);
 		}
 	}
-	// If !SET > Use Technique with index 0
 	else m_pTechnique = m_pEffect->GetTechniqueByIndex(0);
 
-	//Call LoadEffectVariables
+	// Load effect variables
 	LoadEffectVariables();
 
 	return true;
@@ -97,29 +91,27 @@ bool PostProcessingMaterial::LoadEffect(const GameContext& gameContext, const st
 
 void PostProcessingMaterial::Draw(const GameContext& gameContext, RenderTarget* previousRendertarget)
 {
-	UNREFERENCED_PARAMETER(previousRendertarget);
 
-	//TODO: complete
-	//1. Clear the object's RenderTarget (m_pRenderTarget) [Check RenderTarget Class]
+	// Clear the object's RenderTarget
 	const FLOAT clearColor[4]{ 1.0f, 0.0f, 0.0f, 1.0f };
 	m_pRenderTarget->Clear(gameContext, clearColor);
 	
-	//2. Call UpdateEffectVariables(...)
+	// Update effect variables
 	UpdateEffectVariables(previousRendertarget);;
 	
-	//3. Set InputLayout
+	// Set InputLayout
 	gameContext.pDeviceContext->IASetInputLayout(m_pInputLayout);
 	
-	//4. Set VertexBuffer
+	// Set VertexBuffer
 	UINT strides = sizeof(VertexPosTex);
 	UINT offset = 0;
 	gameContext.pDeviceContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &strides, &offset);
 	gameContext.pDeviceContext->IASetIndexBuffer(m_pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 	
-	//5. Set PrimitiveTopology (TRIANGLELIST)
+	// Set PrimitiveTopology
 	gameContext.pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 	
-	//6. Draw 
+	// Draw 
 	D3DX11_TECHNIQUE_DESC techDesc;
 	m_pTechnique->GetDesc(&techDesc);
 	for (UINT p{}; p < techDesc.Passes; ++p)
@@ -136,9 +128,7 @@ void PostProcessingMaterial::CreateVertexBuffer(const GameContext& gameContext)
 {
 	m_NumVertices = 4;
 
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: complete
-	//Create vertex array containing three elements in system memory
+	//Create vertex array containing elements in system memory
 		std::vector<VertexPosTex> vertices =
 	{
 			VertexPosTex(DirectX::XMFLOAT3(-1, -1, 0), DirectX::XMFLOAT2(0, 1)),
@@ -164,8 +154,6 @@ void PostProcessingMaterial::CreateIndexBuffer(const GameContext& gameContext)
 {
 	m_NumIndices = 6;
 
-	UNREFERENCED_PARAMETER(gameContext);
-	//TODO: complete
 	// Create index buffer
 	if (m_pIndexBuffer != nullptr)
 	return;

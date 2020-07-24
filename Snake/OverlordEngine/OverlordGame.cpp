@@ -103,7 +103,6 @@ HRESULT OverlordGame::Run(HINSTANCE hInstance)
 		GameLoop();
 	}
 
-	//TODO: should return 'msg.wParam'
 	return msg.wParam;
 }
 

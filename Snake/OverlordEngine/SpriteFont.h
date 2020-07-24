@@ -71,7 +71,6 @@ public:
 	int GetTextureHeight() const { return m_TextureHeight; }
 
 private:
-	// TODO: get rid of these nasty dependency
 	friend class SpriteFontLoader;
 
 	FontMetric& GetMetric(const wchar_t& character) { return m_CharTable[character - MIN_CHAR_ID]; };

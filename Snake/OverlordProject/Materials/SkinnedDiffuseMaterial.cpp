@@ -31,7 +31,7 @@ void SkinnedDiffuseMaterial::LoadEffectVariables()
 		}
 	}
 
-	//TODO: Create a link to the gBones variable
+	// Create a link to the gBones variable
 	if (!m_pBoneTransforms)
 	{
 		m_pBoneTransforms = GetEffect()->GetVariableByName("gBones")->AsMatrix();
@@ -49,14 +49,13 @@ void SkinnedDiffuseMaterial::LoadEffectVariables()
 void SkinnedDiffuseMaterial::UpdateEffectVariables(const GameContext& gameContext, ModelComponent* pModelComponent)
 {
 	UNREFERENCED_PARAMETER(gameContext);
-	UNREFERENCED_PARAMETER(pModelComponent);
 
 	if (m_pDiffuseTexture && m_pDiffuseSRVvariable)
 	{
 		m_pDiffuseSRVvariable->SetResource(m_pDiffuseTexture->GetShaderResourceView());
 	}
 
-	//TODO: Set the matrix array (BoneTransforms of the ModelAnimator)}
+	// Set the matrix array (BoneTransforms of the ModelAnimator)
 	if (m_pBoneTransforms)
 	{
 		std::vector<DirectX::XMFLOAT4X4> boneTransforms = pModelComponent->GetAnimator()->GetBoneTransforms();

@@ -24,7 +24,7 @@ void DebugRenderer::Release()
 void DebugRenderer::InitRenderer(ID3D11Device* pDevice, unsigned int bufferSize)
 {
 	m_BufferSize = bufferSize;
-	// TODO: paths shouldn't be hard coded.
+
 	m_pEffect = ContentManager::Load<ID3DX11Effect>(L"./Resources/Effects/DebugRenderer.fx");
 	m_pTechnique = m_pEffect->GetTechniqueByIndex(0);
 	m_pWvpVariable = m_pEffect->GetVariableBySemantic("WORLDVIEWPROJECTION")->AsMatrix();
@@ -156,8 +156,6 @@ void DebugRenderer::DrawPhysX(physx::PxScene* pScene)
 
 DirectX::XMFLOAT4 DebugRenderer::ConvertPxColor(physx::PxU32 color)
 {
-	//TODO: Check performance, Bitshift+divide vs switch
-	// Alex: maybe check implementation design too.
 	switch (color)
 	{
 	case 0xFF000000:

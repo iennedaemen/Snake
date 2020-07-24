@@ -33,14 +33,12 @@ void TransformComponent::Initialize(const GameContext& )
 
 void TransformComponent::Update(const GameContext& )
 {
-	// TODO: matrices are updated EVERY FRAME! Fix this
 	UpdateTransforms();
 }
 
 void TransformComponent::UpdateTransforms()
 {
 #pragma region code that should go
-	// TODO: Remove this butt-ugly dependency on other components
 	const auto rigidbody = m_pGameObject->GetComponent<RigidBodyComponent>();
 	const auto controller = m_pGameObject->GetComponent<ControllerComponent>();
 

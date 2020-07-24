@@ -49,7 +49,6 @@ void Snake::Update(const GameContext& gameContext)
 	}
 	if (!m_Pause)
 	{
-		UNREFERENCED_PARAMETER(gameContext);
 		if (!m_pHead->HitObject())
 		{
 			if(m_pBodies[0]->CanGetTail())

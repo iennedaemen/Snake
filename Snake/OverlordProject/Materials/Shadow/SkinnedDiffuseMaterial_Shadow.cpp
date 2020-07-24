@@ -22,21 +22,16 @@ SkinnedDiffuseMaterial_Shadow::SkinnedDiffuseMaterial_Shadow() : Material(L"./Re
 
 void SkinnedDiffuseMaterial_Shadow::SetDiffuseTexture(const std::wstring& assetFile)
 {
-	UNREFERENCED_PARAMETER(assetFile);
-	//TODO: store the diffuse texture in the appropriate member
 	m_pDiffuseTexture = ContentManager::Load<TextureData>(assetFile);
 }
 
 void SkinnedDiffuseMaterial_Shadow::SetLightDirection(DirectX::XMFLOAT3 dir)
 {
-	UNREFERENCED_PARAMETER(dir);
-	//TODO: store the light direction in the appropriate member
 	m_LightDirection = dir;
 }
 
 void SkinnedDiffuseMaterial_Shadow::LoadEffectVariables()
 {
-	//TODO: load all the necessary shader variables
 	m_pDiffuseSRVvariable = GetEffect()->GetVariableByName("gDiffuseMap")->AsShaderResource();
 	m_pBoneTransforms = GetEffect()->GetVariableByName("gBones")->AsMatrix();
 	m_pLightDirectionVariable = GetEffect()->GetVariableByName("gLightDirection")->AsVector();
@@ -46,9 +41,6 @@ void SkinnedDiffuseMaterial_Shadow::LoadEffectVariables()
 
 void SkinnedDiffuseMaterial_Shadow::UpdateEffectVariables(const GameContext& gameContext, ModelComponent* pModelComponent)
 {
-	UNREFERENCED_PARAMETER(gameContext);
-	UNREFERENCED_PARAMETER(pModelComponent);
-	//TODO: update all the necessary shader variables
 	if (m_pDiffuseTexture && m_pDiffuseSRVvariable)
 		m_pDiffuseSRVvariable->SetResource(m_pDiffuseTexture->GetShaderResourceView());
 	
